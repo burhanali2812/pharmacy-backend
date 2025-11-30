@@ -8,6 +8,10 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("Pharmacy Backend is Live!");
+});
+
 mongoose
     .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
