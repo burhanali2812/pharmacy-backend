@@ -12,17 +12,25 @@ app.get("/", (req, res) => {
   res.send("Pharmacy Backend is Live!");
 });
 
-mongoose
-    .connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => console.log("Connected Successfully"))
-    .catch((err) => console.log("MongoDB Connection Error:", err));
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000, 
+    });
+    console.log("MongoDB Connected");
+  } catch (err) {
+    console.error("MongoDB Connection Error:", err);
+    process.exit(1); 
+  }
+};
 
 app.use("/auth", require("./routes/authRoute"));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+connectDB().then(()=>{
+    app.listen(PORT, ()=>{
+        console.log(`Server Running on PORT ${PORT}`)
+    })
+})
