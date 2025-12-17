@@ -27,6 +27,10 @@ const connectDB = async () => {
 };
 
 app.use("/auth", require("./routes/authRoute"));
+app.use("/user", require("./routes/userRoute"));
+app.use("/medicine", require("./routes/medicineRoute"));
+app.use("/invoice", require("./routes/invoiceRoute"));
+app.use("/supplier", require("./routes/supplierRoute"));
 
 const PORT = process.env.PORT || 5000;
 connectDB().then(()=>{
