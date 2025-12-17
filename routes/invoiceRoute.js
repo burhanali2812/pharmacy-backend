@@ -1,6 +1,7 @@
-const express = require('express');
-const userAuthrization = require('../middleware/authMiddleWare')
-const Invoices = require('../models/Invoices');
+import express from 'express';
+import userAuthrization from '../middleware/authMiddleWare.js';
+import Invoices from '../models/Invoices.js';
+
 const router = express.Router();
 router.post('/add-invoice', userAuthrization, async (req, res) => {
     try {

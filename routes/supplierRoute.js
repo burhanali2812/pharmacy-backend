@@ -1,7 +1,8 @@
-const express = require('express')
-const Supplier = require('../models/Supplier');
-const SupplierMedicine = require('../models/SupplierMedicine');
-const userAuthrization = require('../middleware/authMiddleWare')
+import express from 'express';
+import Supplier from '../models/Supplier.js';
+import SupplierMedicine from '../models/SupplierMedicine.js';
+import userAuthrization from '../middleware/authMiddleWare.js';
+
 
 const router = express.Router();
 

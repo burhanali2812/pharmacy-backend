@@ -1,7 +1,14 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const dotenv = require("dotenv");
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+import authRoute from './routes/authRoute.js';
+import userRoute from './routes/userRoute.js';
+import medicineRoute from './routes/medicineRoute.js';
+import invoiceRoute from './routes/invoiceRoute.js';
+import supplierRoute from './routes/supplierRoute.js';
+
 
 const app = express();
 dotenv.config();
@@ -15,9 +22,7 @@ app.get("/", (req, res) => {
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 30000, 
+      serverSelectionTimeoutMS: 30000, // keep this if you want a timeout
     });
     console.log("MongoDB Connected");
   } catch (err) {
@@ -26,11 +31,12 @@ const connectDB = async () => {
   }
 };
 
-app.use("/auth", require("./routes/authRoute"));
-app.use("/user", require("./routes/userRoute"));
-app.use("/medicine", require("./routes/medicineRoute"));
-app.use("/invoice", require("./routes/invoiceRoute"));
-app.use("/supplier", require("./routes/supplierRoute"));
+
+app.use('/auth', authRoute);
+app.use('/user', userRoute);
+app.use('/medicine', medicineRoute);
+app.use('/invoice', invoiceRoute);
+app.use('/supplier', supplierRoute);
 
 const PORT = process.env.PORT || 5000;
 connectDB().then(()=>{

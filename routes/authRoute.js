@@ -1,9 +1,10 @@
-const express = require('express')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const User = require('../models/User')
-const DashboardSales = require('../models/DashboardSales');
-const userAuthrization = require('../middleware/authMiddleWare')
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import DashboardSales from '../models/DashboardSales.js';
+import userAuthrization from '../middleware/authMiddleWare.js';
+
 const router = express.Router();
 router.post('/signup', async (req, res) => {
     try {
@@ -98,5 +99,6 @@ router.get("/getPriceDetails", userAuthrization, async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-module.exports = router;
+
+export default router;
 

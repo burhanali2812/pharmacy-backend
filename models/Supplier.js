@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const supplierSchema = new mongoose.Schema({
     licenseNumber : {type: String, required: true, unique: true},
@@ -11,4 +11,5 @@ const supplierSchema = new mongoose.Schema({
     isPast: { type: Boolean, default: false },
     joinedAt: {type: Date, default: Date.now}
 });
-module.exports = mongoose.model("Supplier", supplierSchema);
+
+export default mongoose.model("Supplier", supplierSchema);

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const medicineShema = new mongoose.Schema({
     sID: Number,
@@ -11,4 +11,5 @@ const medicineShema = new mongoose.Schema({
     profit: Number,
     supplier: String
 });
-module.exports = mongoose.model("Medicine", medicineShema);
+
+export default mongoose.model("Medicine", medicineShema);

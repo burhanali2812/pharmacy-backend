@@ -1,7 +1,9 @@
-const userAuthrization = require('../middleware/authMiddleWare')
-const express = require('express')
-const router = express.Router()
-const Medicine = require('../models/Medicine');
+import userAuthrization from '../middleware/authMiddleWare.js';
+import express from 'express';
+import Medicine from '../models/Medicine.js';
+
+const router = express.Router();
+
 
 
 router.post('/add-Medicine', userAuthrization, async (req, res) => {

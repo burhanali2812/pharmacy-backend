@@ -1,7 +1,7 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const User = require('../models/User')
-const userAuthrization = require('../middleware/authMiddleWare')
+
+import express from 'express';
+import User from '../models/User.js';
+import userAuthrization from '../middleware/authMiddleWare.js';
 
 const router = express.Router();
 router.get('/get-user',userAuthrization, async (req, res) => {

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const saleschema = new mongoose.Schema({
     totalActualPrice: Number,
@@ -6,4 +6,5 @@ const saleschema = new mongoose.Schema({
     profit: Number,
     discount: Number
 });
-module.exports = mongoose.model("DashboardSales", saleschema);
+
+export default mongoose.model("DashboardSales", saleschema);
