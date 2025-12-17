@@ -345,20 +345,20 @@ router.get('/get-invoice/:id', userAuthrization, async (req, res) => {
 router.get("/sales/today", async (req, res) => {
     try {
         const today = new Date();
-        today.setHours(0, 0, 0, 0); // Set time to start of the day
+        today.setHours(0, 0, 0, 0); 
 
         const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1); // Get the start of the next day
+        tomorrow.setDate(tomorrow.getDate() + 1); 
 
         const sales = await Invoices.aggregate([
             {
                 $match: {
-                    createdAt: { $gte: today, $lt: tomorrow } // Get only today's data
+                    createdAt: { $gte: today, $lt: tomorrow } 
                 }
             },
             {
                 $group: {
-                    _id: null, // No need to group by date, since we're fetching only today
+                    _id: null, 
                     totalSales: { $sum: "$grandTotal" }
                 }
             }
@@ -464,7 +464,7 @@ router.delete('/delete-permanent-supplier/:id', userAuthrization, async (req, re
 
         await Supplier.findByIdAndDelete(id);
 
-        res.json({ message: "Supplier and associated medicines deleted successfully!" });
+       return res.json({ message: "Supplier and associated medicines deleted successfully!" });
         console.log("Supplier and associated medicines deleted successfully!");
 
 
@@ -484,7 +484,7 @@ router.put('/recover-supplier/:id', userAuthrization, async (req, res) => {
         res.json({ message: "Supplier marked as past!", supplier: updatedSupplier });
 
     } catch (error) {
-        res.status(500).json({ error: "Server error" });
+       return res.status(500).json({ error: "Server error" });
     }
 });
 router.put('/update-quantity/:id', userAuthrization, async (req, res) => {
