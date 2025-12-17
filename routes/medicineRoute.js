@@ -1,6 +1,7 @@
 import userAuthrization from '../middleware/authMiddleWare.js';
 import express from 'express';
 import Medicine from '../models/Medicine.js';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
