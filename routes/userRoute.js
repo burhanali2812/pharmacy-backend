@@ -2,6 +2,7 @@
 import express from 'express';
 import User from '../models/User.js';
 import userAuthrization from '../middleware/authMiddleWare.js';
+import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 router.get('/get-user',userAuthrization, async (req, res) => {
